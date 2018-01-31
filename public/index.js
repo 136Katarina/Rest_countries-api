@@ -1,5 +1,3 @@
-
-
 var makeRequest = function(url, callback){
   var request = new XMLHttpRequest();
   request.open('GET', url);
@@ -7,6 +5,12 @@ var makeRequest = function(url, callback){
   request.send();
 }
 
+var makeMarker = function(coords, map){
+  var marker = new google.maps.Marker({
+  position: coords,
+  map: map
+})
+}
 
 var populateList = function(countries){
   var select = document.querySelector('#drop-down');
@@ -24,6 +28,7 @@ var populateList = function(countries){
       center: coords,
       zoom: 5
     })
+    makeMarker(coords, myMap);
   }
 
   select.addEventListener('change', function(){
@@ -51,17 +56,12 @@ var populateList = function(countries){
     // ul.appendChild(li);
     save(countries[select.value]);
   })
-
-
-
 }
-
 
 var save = function(country) {
   var jsonString = JSON.stringify(country);
   localStorage.setItem('country', jsonString);
 }
-
 
 var requestComplete = function(){
   // console.log("Wahey!");
@@ -72,7 +72,6 @@ var requestComplete = function(){
   var countries = JSON.parse(jsonString);
   populateList(countries);
 }
-
 
 var app = function(){
 
@@ -93,12 +92,8 @@ var app = function(){
   image.src = savedCountry.flag;
   image.width = 200;
 
-
   // var clickButton = document.getElementById("list");
   // clickButton.addEventListener('click', function(){makeRequest(url, requestComplete)})
-
 }
-
-
 
 window.addEventListener('load', app);
