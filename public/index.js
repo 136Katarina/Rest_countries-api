@@ -19,11 +19,14 @@ var populateList = function(countries){
   select.addEventListener('change', function(){
     // var li = document.createElement('li');
     var h3 = document.querySelector('#country');
-    h3.innerText = "Country " + countries[select.value].name;
+    h3.innerText = countries[select.value].name;
     var h5 = document.querySelector('#population');
-    h5.innerText = "Population " + countries[select.value].population;
+    h5.innerText = "Population: " + countries[select.value].population;
     var p = document.querySelector('#capital');
-    p.innerText = "Capital " + countries[select.value].capital;
+    p.innerText = "Capital: " + countries[select.value].capital;
+    var image = document.querySelector('#flag');
+    image.src = countries[select.value].flag;
+    image.width = 200;
     // var ul = document.querySelector('#country-list')
     // li.appendChild(h3);
     // li.appendChild(h5);
@@ -64,11 +67,14 @@ var app = function(){
   if( !savedCountry ) return;
 
   var h3 = document.querySelector('#country');
-  h3.innerText = "Country " + savedCountry.name;
+  h3.innerText = savedCountry.name;
   var h5 = document.querySelector('#population');
-  h5.innerText = "Population " + savedCountry.population;
+  h5.innerText = "Population: " + savedCountry.population;
   var p = document.querySelector('#capital');
-  p.innerText = "Capital " + savedCountry.capital;
+  p.innerText = "Capital: " + savedCountry.capital;
+  var image = document.querySelector('#flag');
+  image.src = savedCountry.flag;
+  image.width = 200;
 
 
   // var clickButton = document.getElementById("list");
