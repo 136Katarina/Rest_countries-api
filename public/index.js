@@ -59,6 +59,17 @@ var app = function(){
   var url = 'https://restcountries.eu/rest/v2';
   makeRequest(url,requestComplete);
 
+  var jsonString = localStorage.getItem('country');
+  var savedCountry = JSON.parse(jsonString);
+  if( !savedCountry ) return;
+
+  var h3 = document.querySelector('#country');
+  h3.innerText = "Country " + savedCountry.name;
+  var h5 = document.querySelector('#population');
+  h5.innerText = "Population " + savedCountry.population;
+  var p = document.querySelector('#capital');
+  p.innerText = "Capital " + savedCountry.capital;
+
 
   // var clickButton = document.getElementById("list");
   // clickButton.addEventListener('click', function(){makeRequest(url, requestComplete)})
