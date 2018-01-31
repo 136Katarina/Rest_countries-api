@@ -17,20 +17,29 @@ var populateList = function(countries){
   });
 
   select.addEventListener('change', function(){
-    var li = document.createElement('li');
-    var h3 = document.createElement('h3');
+    // var li = document.createElement('li');
+    var h3 = document.querySelector('#country');
     h3.innerText = "Country " + countries[select.value].name;
-    var h5 = document.createElement('h5');
+    var h5 = document.querySelector('#population');
     h5.innerText = "Population " + countries[select.value].population;
-    var p = document.createElement('p');
+    var p = document.querySelector('#capital');
     p.innerText = "Capital " + countries[select.value].capital;
-    var ul = document.querySelector('#country-list')
-    li.appendChild(h3);
-    li.appendChild(h5);
-    li.appendChild(p);
-    ul.appendChild(li);
+    // var ul = document.querySelector('#country-list')
+    // li.appendChild(h3);
+    // li.appendChild(h5);
+    // li.appendChild(p);
+    // ul.appendChild(li);
+    save(countries[select.value]);
   })
 
+
+
+}
+
+
+var save = function(country) {
+  var jsonString = JSON.stringify(country);
+  localStorage.setItem('country', jsonString);
 }
 
 
