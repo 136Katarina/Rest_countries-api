@@ -1,3 +1,5 @@
+
+
 var makeRequest = function(url, callback){
   var request = new XMLHttpRequest();
   request.open('GET', url);
@@ -16,6 +18,14 @@ var populateList = function(countries){
     select.appendChild(option);
   });
 
+  var makeAMap = function(location, coords){
+    var myMap = new google.maps.Map(location,
+    {
+      center: coords,
+      zoom: 5
+    })
+  }
+
   select.addEventListener('change', function(){
     // var li = document.createElement('li');
     var h3 = document.querySelector('#country');
@@ -27,6 +37,13 @@ var populateList = function(countries){
     var image = document.querySelector('#flag');
     image.src = countries[select.value].flag;
     image.width = 200;
+
+    var map = document.querySelector('#map');
+    var coords = {
+      lat: countries[select.value].latlng[0],
+      lng: countries[select.value].latlng[1]
+    }
+    makeAMap(map, coords);
     // var ul = document.querySelector('#country-list')
     // li.appendChild(h3);
     // li.appendChild(h5);
